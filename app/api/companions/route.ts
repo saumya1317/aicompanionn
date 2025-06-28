@@ -6,8 +6,11 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const companion = await createCompanion(body);
     return NextResponse.json({ id: companion.id });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error creating companion', error);
-    return NextResponse.json({ error: error.message ?? 'Internal server error' }, { status: 500 });
+    // Safely extract error message if available
+    const errorMessage =
+      error instanceof Error ? error.message : 'Internal server error';
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 } 
