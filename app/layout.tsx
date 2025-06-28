@@ -9,7 +9,7 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: "convotutor",
+  title: "studybudy",
   description: "Real-time AI Teaching Platform",
 };
 
