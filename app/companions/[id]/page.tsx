@@ -5,9 +5,8 @@ import { subjectsColors } from "@/constants";
 import Image from "next/image";
 import CompanionComponent from "@/components/CompanionComponent";
 
-
 interface CompanionSessionPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const subjectIconMap: Record<string, string> = {
@@ -20,7 +19,7 @@ const subjectIconMap: Record<string, string> = {
 };
 
 const CompanionSession = async ({ params }: CompanionSessionPageProps) => {
-  const { id } = params;
+  const { id } = await params;
 
   const companion = await getCompanion(id);
   const user = await currentUser();
@@ -37,19 +36,20 @@ const CompanionSession = async ({ params }: CompanionSessionPageProps) => {
         <div className="flex items-center gap-4">
           <div
             className="size-[72px] flex items-center justify-center rounded-lg max-md:hidden"
-            style={{ backgroundColor: subjectsColors[subject as keyof typeof subjectsColors] }}
+            style={{
+              backgroundColor:
+                subjectsColors[subject as keyof typeof subjectsColors],
+            }}
           >
-            {(() => {
-              const iconName = subjectIconMap[subject] ?? subject.replace(/\s+/g, "_");
-              return (
-                <Image
-                  src={`/icons/${iconName}.png`}
-                  alt={subject}
-                  width={35}
-                  height={35}
-                />
-              );
-            })()}
+            <Image
+              src={`/icons/${
+                subjectIconMap[subject] ??
+                subject.replace(/\s+/g, "_")
+              }.png`}
+              alt={subject}
+              width={35}
+              height={35}
+            />
           </div>
 
           <div className="flex flex-col gap-1">
@@ -68,7 +68,7 @@ const CompanionSession = async ({ params }: CompanionSessionPageProps) => {
         </div>
       </article>
 
-      {/* Companion interaction component */}
+      {/* Companion interaction */}
       <CompanionComponent
         {...companion}
         companionId={id}
