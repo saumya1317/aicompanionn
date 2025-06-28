@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { subjects } from '@/constants'
 import Navbar from '@/components/Navbar'
-import CompanionCard from '@/components/CompanionCard'
+
 
 
 // Server component by default (no "use client"), allowing async fetches
