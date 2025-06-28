@@ -15,7 +15,7 @@ const Navbar = () => {
     <nav className="navbar fixed top-0 left-0 w-full z-50 flex items-center bg-white border-b border-border px-6 py-3 backdrop-blur-md">
       {/* Logo */}
       <Link href="/" className="flex items-center gap-2 cursor-pointer mr-6">
-        <Image src="/images/logo.svg" alt="logo" width={20} height={20} />
+        <Image src="/images/studdybuddy.png" alt="logo" width={20} height={20} />
         <span className="font-semibold text-sm">Convotutor</span>
       </Link>
 
