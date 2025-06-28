@@ -9,9 +9,10 @@ const SearchInput = () => {
     const pathname = usePathname();
     const router = useRouter();
     const searchParams = useSearchParams();
-    const query = searchParams.get('topic') || '';
 
-    const [searchQuery, setSearchQuery] = useState('');
+    const initialQuery = searchParams.get('topic') || '';
+
+    const [searchQuery, setSearchQuery] = useState(initialQuery);
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {

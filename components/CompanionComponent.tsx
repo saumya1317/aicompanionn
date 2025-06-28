@@ -1,7 +1,7 @@
 'use client';
 
 import {useEffect, useRef, useState} from 'react'
-import {cn, getSubjectColor} from "@/lib/utils";
+import {cn} from "@/lib/utils";
 import { vapi } from "@/lib/vapi.sdk";
 import Image from "next/image";
 import Lottie, {LottieRefCurrentProps} from "lottie-react";
@@ -9,6 +9,8 @@ import soundwaves from '@/constants/soundwaves.json'
 import { subjectsColors } from "@/constants";
 import { voices } from "@/constants";
 import {addToSessionHistory} from '@/lib/actions/companion.actions'
+import { CreateAssistantDTO } from "@vapi-ai/web/dist/api";
+
 enum CallStatus {
     INACTIVE = 'INACTIVE',
     CONNECTING = 'CONNECTING',
@@ -86,7 +88,7 @@ const CompanionComponent = ({ companionId, subject, topic, name, userName, userI
             vapi.off('speech-start', onSpeechStart);
             vapi.off('speech-end', onSpeechEnd);
         }
-    }, []);
+    }, [companionId]);
 
     const toggleMicrophone = () => {
         const isMuted = vapi.isMuted();
@@ -137,7 +139,7 @@ const CompanionComponent = ({ companionId, subject, topic, name, userName, userI
                 },
                 clientMessages: ["transcript"],
                 serverMessages: ["transcript"],
-            } as any;
+            } as unknown as CreateAssistantDTO;
         };
 
         // @ts-expect-error Vapi types
