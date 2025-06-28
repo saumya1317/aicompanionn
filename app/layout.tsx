@@ -9,10 +9,12 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: "studybudy",
-  description: "Real-time AI Teaching Platform",
+  title: "StudyBuddy",
+  description: "Real-time AI tutoring for every learner",
+  icons: {
+    icon: "/images/studdybuddy.png",
+  },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
